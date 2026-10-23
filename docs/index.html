@@ -1,24 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Book Discovery Hub</title>
-  <link rel="stylesheet" href="styles.css" />
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book Discovery Hub</title>
+    <meta
+      name="description"
+      content="A polished book discovery interface for browsing reads by genre, author, and theme."
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <div class="brand-block">
+          <div class="brand-mark">B</div>
+          <div>
+            <p class="eyebrow">Reading portal</p>
+            <h1>Book Discovery Hub</h1>
+          </div>
+        </div>
 
-<body>
-  <header>
-    <h1>Book Discovery Hub</h1>
-    <p>Find your next great read by genre, author, or theme.</p>
-  </header>
+        <div class="topbar-actions">
+          <label class="search-wrap" for="searchInput">
+            <span class="sr-only">Search books</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M10.5 3a7.5 7.5 0 0 1 5.9 12.8l4.4 4.4 1.4-1.4-4.4-4.4A7.5 7.5 0 1 1 10.5 3Zm0 2a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11Z"/>
+            </svg>
+            <input id="searchInput" type="text" placeholder="Search by title, author, genre, or theme" />
+          </label>
+        </div>
+      </header>
 
-  <section id="search-section">
-    <input id="searchInput" type="text" placeholder="Search by title, author, genre, or theme" />
-  </section>
+      <main class="content">
+        <section class="hero">
+          <div class="hero-copy">
+            <p class="eyebrow accent">Curated for curious readers</p>
+            <h2>Find your next favorite read.</h2>
+            <p>
+              Browse standout fiction, immersive fantasy, practical guides, and thoughtful literary picks from one calm, elegant library view.
+            </p>
+          </div>
 
-  <section id="book-grid"></section>
+          <div class="hero-stats" aria-label="Book stats">
+            <div>
+              <strong>24</strong>
+              <span>featured titles</span>
+            </div>
+            <div>
+              <strong>8</strong>
+              <span>genres</span>
+            </div>
+            <div>
+              <strong>4.8</strong>
+              <span>average rating</span>
+            </div>
+          </div>
+        </section>
 
-  <script src="app.js"></script>
-</body>
+        <section class="toolbar" aria-label="Browse options">
+          <span class="toolbar-label">Highlights</span>
+          <div class="chip-row">
+            <button class="chip active" type="button">All</button>
+            <button class="chip" type="button">Fantasy</button>
+            <button class="chip" type="button">Sci-Fi</button>
+            <button class="chip" type="button">Memoir</button>
+            <button class="chip" type="button">Classics</button>
+          </div>
+        </section>
+
+        <section class="results-bar" aria-live="polite">
+          <p><span id="resultsCount">0</span> books discovered</p>
+        </section>
+
+        <section id="book-grid" class="book-grid" aria-live="polite"></section>
+      </main>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
 </html>
