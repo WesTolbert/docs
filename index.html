@@ -1,24 +1,221 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Book Discovery Hub</title>
-  <link rel="stylesheet" href="styles.css" />
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>A MIND OF VALOR</title>
+    <meta
+      name="description"
+      content="A MIND OF VALOR — a refined reading portal with profile, bookshelf tracking, and admin tools."
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <div class="brand-block">
+          <div class="brand-mark">A</div>
+          <div>
+            <p class="eyebrow">Reading portal</p>
+            <h1>A MIND OF VALOR</h1>
+          </div>
+        </div>
 
-<body>
-  <header>
-    <h1>Book Discovery Hub</h1>
-    <p>Find your next great read by genre, author, or theme.</p>
-  </header>
+        <div class="topbar-actions">
+          <label class="search-wrap" for="searchInput">
+            <span class="sr-only">Search books</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M10.5 3a7.5 7.5 0 0 1 5.9 12.8l4.4 4.4 1.4-1.4-4.4-4.4A7.5 7.5 0 1 1 10.5 3Zm0 2a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11Z"/>
+            </svg>
+            <input id="searchInput" type="text" placeholder="Search by title, author, genre, or theme" />
+          </label>
 
-  <section id="search-section">
-    <input id="searchInput" type="text" placeholder="Search by title, author, genre, or theme" />
-  </section>
+          <div class="user-actions">
+            <button id="loginToggle" class="nav-button" type="button">Login</button>
+            <button id="signupToggle" class="nav-button ghost" type="button">Sign up</button>
+            <button id="logoutBtn" class="nav-button danger hidden" type="button">Logout</button>
+          </div>
+        </div>
+      </header>
 
-  <section id="book-grid"></section>
+      <main class="content">
+        <section class="hero">
+          <div class="hero-copy">
+            <p class="eyebrow accent">Curated for brave readers</p>
+            <h2>Find your next story worth carrying.</h2>
+            <p>
+              Discover bold fiction, thoughtful memoirs, epic fantasy, and unforgettable reads selected with courage, curiosity, and character in mind.
+            </p>
+          </div>
 
-  <script src="app.js"></script>
-</body>
+          <div class="hero-stats" aria-label="Book stats">
+            <div>
+              <strong id="heroFeaturedCount">24</strong>
+              <span>featured titles</span>
+            </div>
+            <div>
+              <strong id="heroGenreCount">8</strong>
+              <span>genres</span>
+            </div>
+            <div>
+              <strong>4.8</strong>
+              <span>average rating</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="toolbar" aria-label="Browse options">
+          <span class="toolbar-label">Highlights</span>
+          <div class="chip-row" id="genreTabs">
+            <button class="chip active" type="button">All</button>
+            <button class="chip" type="button">Fantasy</button>
+            <button class="chip" type="button">Sci-Fi</button>
+            <button class="chip" type="button">Memoir</button>
+            <button class="chip" type="button">Classics</button>
+          </div>
+        </section>
+
+        <section class="results-bar" aria-live="polite">
+          <p><span id="resultsCount">0</span> books discovered</p>
+        </section>
+
+        <section id="authPanel" class="auth-panel panel-box">
+          <div class="panel-header">
+            <h3>Account access</h3>
+          </div>
+
+          <div class="auth-tabs">
+            <button class="auth-tab active" data-auth-tab="login" type="button">Login</button>
+            <button class="auth-tab" data-auth-tab="signup" type="button">Sign up</button>
+          </div>
+
+          <form id="loginForm" class="auth-form active">
+            <label>
+              Email
+              <input type="email" name="email" placeholder="you@example.com" required />
+            </label>
+            <label>
+              Password
+              <input type="password" name="password" placeholder="••••••••" required />
+            </label>
+            <button type="submit" class="primary-button">Login</button>
+          </form>
+
+          <form id="signupForm" class="auth-form">
+            <label>
+              Full name
+              <input type="text" name="fullName" placeholder="Your name" required />
+            </label>
+            <label>
+              Email
+              <input type="email" name="email" placeholder="you@example.com" required />
+            </label>
+            <label>
+              Password
+              <input type="password" name="password" placeholder="At least 6 characters" required minlength="6" />
+            </label>
+            <button type="submit" class="primary-button">Create account</button>
+          </form>
+
+          <p id="authMessage" class="status-text"></p>
+        </section>
+
+        <section id="profilePanel" class="profile-panel panel-box hidden">
+          <div class="panel-header with-actions">
+            <h3>Profile</h3>
+            <span id="profileRole" class="role-pill">user</span>
+          </div>
+
+          <div class="profile-card">
+            <div>
+              <p class="label">Signed in as</p>
+              <h4 id="profileName">Reader</h4>
+            </div>
+            <div>
+              <p class="label">Reading streak</p>
+              <strong id="readingStreak">5 days</strong>
+            </div>
+          </div>
+
+          <div class="bookshelf-block">
+            <div class="section-header">
+              <h4>My Bookshelves</h4>
+              <button id="addShelfToggle" class="secondary-button" type="button">+ Add bookshelf</button>
+            </div>
+
+            <div id="bookshelfFormWrapper" class="bookshelf-form-wrapper hidden">
+              <form id="bookshelfForm" class="bookshelf-form">
+                <label>
+                  Shelf title
+                  <input type="text" name="shelfTitle" placeholder="Spring favorites" />
+                </label>
+                <label>
+                  Upload bookshelf photo
+                  <input type="file" name="shelfImage" accept="image/*" />
+                </label>
+                <div id="bookshelfPreview" class="bookshelf-preview hidden"></div>
+                <button type="submit" class="primary-button">Save bookshelf</button>
+              </form>
+            </div>
+
+            <div class="carousel-wrap">
+              <button id="prevShelf" class="carousel-button" type="button" aria-label="Previous shelf">‹</button>
+              <div id="bookshelfCarousel" class="bookshelf-carousel" aria-live="polite"></div>
+              <button id="nextShelf" class="carousel-button" type="button" aria-label="Next shelf">›</button>
+            </div>
+          </div>
+        </section>
+
+        <section id="adminPanel" class="admin-panel panel-box hidden">
+          <div class="panel-header">
+            <h3>Admin tools</h3>
+          </div>
+
+          <form id="adminBookForm" class="admin-form">
+            <div class="field-grid">
+              <label>
+                Title
+                <input type="text" name="title" placeholder="Book title" required />
+              </label>
+              <label>
+                Author
+                <input type="text" name="author" placeholder="Author name" required />
+              </label>
+              <label>
+                Genre
+                <input type="text" name="genre" placeholder="Fantasy" required />
+              </label>
+              <label>
+                Theme
+                <input type="text" name="theme" placeholder="Adventure" required />
+              </label>
+              <label>
+                Rating
+                <input type="number" name="rating" min="0" max="5" step="0.1" value="4.8" required />
+              </label>
+              <label>
+                Amazon link
+                <input type="url" name="amazon" placeholder="https://..." required />
+              </label>
+              <label>
+                Audible link
+                <input type="url" name="audible" placeholder="https://..." required />
+              </label>
+              <label>
+                Cover color
+                <input type="text" name="cover" placeholder="linear-gradient(...)" value="linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%)" required />
+              </label>
+            </div>
+            <button type="submit" class="primary-button">Add book</button>
+          </form>
+
+          <p id="adminMessage" class="status-text"></p>
+        </section>
+
+        <section id="book-grid" class="book-grid" aria-live="polite"></section>
+      </main>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
 </html>
