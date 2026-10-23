@@ -6,7 +6,7 @@
     <title>A MIND OF VALOR</title>
     <meta
       name="description"
-      content="A MIND OF VALOR — a curated reading portal for bold stories, thoughtful discovery, and memorable reads."
+      content="A MIND OF VALOR — a book discovery and storefront experience with login, profile, and admin tools."
     />
     <link rel="stylesheet" href="styles.css" />
   </head>
@@ -29,6 +29,12 @@
             </svg>
             <input id="searchInput" type="text" placeholder="Search by title, author, genre, or theme" />
           </label>
+
+          <div class="user-actions">
+            <button id="loginToggle" class="nav-button" type="button">Login</button>
+            <button id="signupToggle" class="nav-button ghost" type="button">Sign up</button>
+            <button id="logoutBtn" class="nav-button danger hidden" type="button">Logout</button>
+          </div>
         </div>
       </header>
 
@@ -60,7 +66,7 @@
 
         <section class="toolbar" aria-label="Browse options">
           <span class="toolbar-label">Highlights</span>
-          <div class="chip-row">
+          <div class="chip-row" id="genreTabs">
             <button class="chip active" type="button">All</button>
             <button class="chip" type="button">Fantasy</button>
             <button class="chip" type="button">Sci-Fi</button>
@@ -73,10 +79,114 @@
           <p><span id="resultsCount">0</span> books discovered</p>
         </section>
 
+        <section id="authPanel" class="auth-panel panel-box">
+          <div class="panel-header">
+            <h3>Account access</h3>
+          </div>
+
+          <div class="auth-tabs">
+            <button class="auth-tab active" data-auth-tab="login" type="button">Login</button>
+            <button class="auth-tab" data-auth-tab="signup" type="button">Sign up</button>
+          </div>
+
+          <form id="loginForm" class="auth-form active">
+            <label>
+              Email
+              <input type="email" name="email" placeholder="you@example.com" required />
+            </label>
+            <label>
+              Password
+              <input type="password" name="password" placeholder="••••••••" required />
+            </label>
+            <button type="submit" class="primary-button">Login</button>
+          </form>
+
+          <form id="signupForm" class="auth-form">
+            <label>
+              Full name
+              <input type="text" name="fullName" placeholder="Your name" required />
+            </label>
+            <label>
+              Email
+              <input type="email" name="email" placeholder="you@example.com" required />
+            </label>
+            <label>
+              Password
+              <input type="password" name="password" placeholder="At least 6 characters" required minlength="6" />
+            </label>
+            <button type="submit" class="primary-button">Create account</button>
+          </form>
+
+          <p id="authMessage" class="status-text"></p>
+        </section>
+
+        <section id="profilePanel" class="profile-panel panel-box hidden">
+          <div class="panel-header">
+            <h3>Profile</h3>
+          </div>
+          <div class="profile-card">
+            <div>
+              <p class="label">Signed in as</p>
+              <h4 id="profileName">Reader</h4>
+            </div>
+            <div>
+              <p class="label">Role</p>
+              <span id="profileRole" class="role-pill">user</span>
+            </div>
+          </div>
+        </section>
+
+        <section id="adminPanel" class="admin-panel panel-box hidden">
+          <div class="panel-header">
+            <h3>Admin tools</h3>
+          </div>
+
+          <form id="adminBookForm" class="admin-form">
+            <div class="field-grid">
+              <label>
+                Title
+                <input type="text" name="title" placeholder="Book title" required />
+              </label>
+              <label>
+                Author
+                <input type="text" name="author" placeholder="Author name" required />
+              </label>
+              <label>
+                Genre
+                <input type="text" name="genre" placeholder="Fantasy" required />
+              </label>
+              <label>
+                Theme
+                <input type="text" name="theme" placeholder="Adventure" required />
+              </label>
+              <label>
+                Rating
+                <input type="number" name="rating" min="0" max="5" step="0.1" value="4.8" required />
+              </label>
+              <label>
+                Amazon link
+                <input type="url" name="amazon" placeholder="https://..." required />
+              </label>
+              <label>
+                Audible link
+                <input type="url" name="audible" placeholder="https://..." required />
+              </label>
+              <label>
+                Cover color
+                <input type="text" name="cover" placeholder="linear-gradient(...)" value="linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%)" required />
+              </label>
+            </div>
+            <button type="submit" class="primary-button">Add book</button>
+          </form>
+
+          <p id="adminMessage" class="status-text"></p>
+        </section>
+
         <section id="book-grid" class="book-grid" aria-live="polite"></section>
       </main>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="app.js"></script>
   </body>
 </html>
