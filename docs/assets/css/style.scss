@@ -1,0 +1,56 @@
+---
+---
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f7f7f7;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background: #222;
+  color: white;
+  padding: 2rem;
+  text-align: center;
+}
+
+#search-section {
+  padding: 1rem;
+  text-align: center;
+}
+
+#searchInput {
+  width: 60%;
+  padding: 0.75rem;
+  font-size: 1rem;
+}
+
+#book-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.5rem;
+  padding: 2rem;
+}
+
+.book-card {
+  background: white;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.book-card img {
+  width: 100%;
+  border-radius: 6px;
+}
+
+.book-card h3 {
+  margin: 0.5rem 0;
+}
+
+.links a {
+  display: inline-block;
+  margin-right: 10px;
+  color: #0077cc;
+}
