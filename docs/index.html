@@ -10,12 +10,12 @@
     />
     <link rel="stylesheet" href="styles.css" />
     <style>
-      .card-demo {
-        margin-top: 1rem;
+      .auth-panel {
+        position: relative;
       }
 
-      .auth-card {
-        max-width: 26rem;
+      .auth-card-shell {
+        max-width: 28rem;
         width: 100%;
         margin: 0 auto;
         border: 1px solid rgba(148, 163, 184, 0.24);
@@ -69,13 +69,15 @@
         gap: 0.45rem;
       }
 
-      .auth-label {
+      .auth-field label,
+      .auth-form label {
         font-size: 0.92rem;
         color: #e2e8f0;
         font-weight: 600;
       }
 
-      .auth-input {
+      .auth-field input,
+      .auth-form input {
         width: 100%;
         border: 1px solid rgba(148, 163, 184, 0.2);
         background: rgba(15, 23, 42, 0.35);
@@ -85,7 +87,8 @@
         padding: 0.74rem 0.85rem;
       }
 
-      .auth-input::placeholder {
+      .auth-field input::placeholder,
+      .auth-form input::placeholder {
         color: #94a3b8;
       }
 
@@ -96,7 +99,8 @@
         margin-top: 1rem;
       }
 
-      .auth-button {
+      .auth-button,
+      .primary-button {
         display: inline-flex;
         align-items: center;
         justify-content: center;
@@ -109,7 +113,8 @@
         cursor: pointer;
       }
 
-      .auth-button--primary {
+      .auth-button--primary,
+      .primary-button {
         background: linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%);
         color: white;
       }
@@ -118,6 +123,30 @@
         background: rgba(15, 23, 42, 0.2);
         border-color: rgba(148, 163, 184, 0.24);
         color: #e2e8f0;
+      }
+
+      .auth-form {
+        display: none;
+      }
+
+      .auth-form.active {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .auth-form .auth-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.5rem;
+      }
+
+      .auth-form .muted-link {
+        font-size: 0.8rem;
+        color: #cbd5e1;
+        text-decoration: underline;
+        text-underline-offset: 0.2rem;
       }
     </style>
   </head>
@@ -190,52 +219,62 @@
           <p><span id="resultsCount">0</span> books discovered</p>
         </section>
 
-        <section class="card-demo panel-box">
+        <section id="authPanel" class="auth-panel panel-box">
           <div class="panel-header">
-            <h3>Sign up</h3>
+            <h3>Account access</h3>
           </div>
 
-          <div class="auth-card">
+          <div class="auth-card-shell">
             <div class="auth-card-header">
               <div>
-                <h3 class="auth-card-title">Create an account</h3>
-                <p class="auth-card-description">Enter your information below to create your account</p>
+                <h3 class="auth-card-title" data-auth-title="login">Login to your account</h3>
+                <h3 class="auth-card-title hidden" data-auth-title="signup">Create an account</h3>
+                <p class="auth-card-description" data-auth-description="login">Enter your email below to login to your account</p>
+                <p class="auth-card-description hidden" data-auth-description="signup">Enter your information below to create your account</p>
               </div>
-              <button type="button" class="auth-card-action">Login</button>
+              <button type="button" class="auth-card-action" data-auth-link="signup">Sign Up</button>
+              <button type="button" class="auth-card-action hidden" data-auth-link="login">Login</button>
             </div>
 
-            <form class="auth-card-form">
+            <div class="auth-tabs" aria-label="Authentication mode">
+              <button class="auth-tab active" data-auth-tab="login" type="button">Login</button>
+              <button class="auth-tab" data-auth-tab="signup" type="button">Sign up</button>
+            </div>
+
+            <form id="loginForm" class="auth-form active auth-card-form">
               <div class="auth-field">
-                <label class="auth-label" for="fullName">Full name</label>
-                <input
-                  id="fullName"
-                  class="auth-input"
-                  type="text"
-                  placeholder="Your name"
-                  required
-                />
+                <label for="loginEmail">Email</label>
+                <input id="loginEmail" type="email" name="email" placeholder="m@example.com" required />
               </div>
 
               <div class="auth-field">
-                <label class="auth-label" for="signupEmail">Email</label>
-                <input
-                  id="signupEmail"
-                  class="auth-input"
-                  type="email"
-                  placeholder="m@example.com"
-                  required
-                />
+                <div class="auth-row">
+                  <label for="loginPassword">Password</label>
+                  <a href="#" class="muted-link">Forgot your password?</a>
+                </div>
+                <input id="loginPassword" type="password" name="password" required />
+              </div>
+
+              <div class="auth-actions">
+                <button type="submit" class="auth-button auth-button--primary">Login</button>
+                <button type="button" class="auth-button auth-button--secondary">Login with Google</button>
+              </div>
+            </form>
+
+            <form id="signupForm" class="auth-form auth-card-form">
+              <div class="auth-field">
+                <label for="signupName">Full name</label>
+                <input id="signupName" type="text" name="fullName" placeholder="Your name" required />
               </div>
 
               <div class="auth-field">
-                <label class="auth-label" for="signupPassword">Password</label>
-                <input
-                  id="signupPassword"
-                  class="auth-input"
-                  type="password"
-                  placeholder="At least 6 characters"
-                  required
-                />
+                <label for="signupEmail">Email</label>
+                <input id="signupEmail" type="email" name="email" placeholder="m@example.com" required />
+              </div>
+
+              <div class="auth-field">
+                <label for="signupPassword">Password</label>
+                <input id="signupPassword" type="password" name="password" placeholder="At least 6 characters" required minlength="6" />
               </div>
 
               <div class="auth-actions">
@@ -244,45 +283,6 @@
               </div>
             </form>
           </div>
-        </section>
-
-        <section id="authPanel" class="auth-panel panel-box">
-          <div class="panel-header">
-            <h3>Account access</h3>
-          </div>
-
-          <div class="auth-tabs">
-            <button class="auth-tab active" data-auth-tab="login" type="button">Login</button>
-            <button class="auth-tab" data-auth-tab="signup" type="button">Sign up</button>
-          </div>
-
-          <form id="loginForm" class="auth-form active">
-            <label>
-              Email
-              <input type="email" name="email" placeholder="you@example.com" required />
-            </label>
-            <label>
-              Password
-              <input type="password" name="password" placeholder="••••••••" required />
-            </label>
-            <button type="submit" class="primary-button">Login</button>
-          </form>
-
-          <form id="signupForm" class="auth-form">
-            <label>
-              Full name
-              <input type="text" name="fullName" placeholder="Your name" required />
-            </label>
-            <label>
-              Email
-              <input type="email" name="email" placeholder="you@example.com" required />
-            </label>
-            <label>
-              Password
-              <input type="password" name="password" placeholder="At least 6 characters" required minlength="6" />
-            </label>
-            <button type="submit" class="primary-button">Create account</button>
-          </form>
 
           <p id="authMessage" class="status-text"></p>
         </section>
