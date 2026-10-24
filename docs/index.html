@@ -10,215 +10,127 @@
     />
     <link rel="stylesheet" href="styles.css" />
     <style>
-      .questionnaire-demo {
+      .card-demo {
         margin-top: 1rem;
       }
 
-      .questionnaire-shell {
-        background: rgba(15, 23, 42, 0.72);
-        border: 1px solid rgba(148, 163, 184, 0.2);
-        border-radius: 1.25rem;
-        padding: 1.5rem;
-        box-shadow: 0 22px 42px rgba(15, 23, 42, 0.28);
+      .login-card {
+        max-width: 26rem;
+        width: 100%;
+        margin: 0 auto;
+        border: 1px solid rgba(148, 163, 184, 0.24);
+        border-radius: 1.1rem;
+        background: rgba(15, 23, 42, 0.65);
+        color: #e2e8f0;
+        padding: 1.25rem;
+        box-shadow: 0 20px 42px rgba(15, 23, 42, 0.2);
       }
 
-      .questionnaire-header {
+      .login-card-header {
         display: flex;
-        align-items: flex-end;
+        align-items: flex-start;
         justify-content: space-between;
         gap: 1rem;
-        margin-bottom: 1.25rem;
+        margin-bottom: 1rem;
       }
 
-      .questionnaire-header h3 {
+      .login-card-title {
         margin: 0;
         font-size: 1.25rem;
         color: #f8fafc;
       }
 
-      .questionnaire-header p {
-        margin: 0;
+      .login-card-description {
+        margin: 0.35rem 0 0;
         color: #cbd5e1;
-        font-size: 0.82rem;
+        font-size: 0.92rem;
+        line-height: 1.5;
       }
 
-      .questionnaire-progress {
-        display: flex;
-        gap: 0.5rem;
-        margin-bottom: 1.25rem;
-      }
-
-      .questionnaire-step {
-        flex: 1;
-        height: 0.5rem;
-        border-radius: 999px;
-        background: rgba(148, 163, 184, 0.2);
-      }
-
-      .questionnaire-step.active {
-        background: linear-gradient(135deg, #8b5cf6 0%, #38bdf8 100%);
-      }
-
-      .questionnaire-card {
-        border: 1px solid rgba(148, 163, 184, 0.2);
-        border-radius: 1rem;
-        padding: 1.25rem;
-        background: rgba(15, 23, 42, 0.4);
-      }
-
-      .questionnaire-card h4 {
-        margin: 0 0 0.4rem;
-        color: #f8fafc;
-        font-size: 1.05rem;
-      }
-
-      .questionnaire-card .kind-label {
-        display: inline-block;
-        margin-bottom: 0.6rem;
-        font-size: 0.7rem;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        color: #a5b4fc;
-      }
-
-      .questionnaire-card p {
-        margin: 0 0 1rem;
-        color: #cbd5e1;
-      }
-
-      .questionnaire-options {
-        display: grid;
-        gap: 0.8rem;
-      }
-
-      .questionnaire-option {
-        display: flex;
-        align-items: flex-start;
-        gap: 0.75rem;
-        width: 100%;
-        text-align: left;
-        border: 1px solid rgba(148, 163, 184, 0.2);
-        border-radius: 0.9rem;
-        background: rgba(15, 23, 42, 0.25);
-        padding: 0.8rem 0.9rem;
-        color: #e2e8f0;
+      .login-card-action {
+        appearance: none;
+        border: none;
+        background: transparent;
+        color: #8ab4ff;
+        font-weight: 600;
+        font-size: 0.92rem;
         cursor: pointer;
-        transition: transform 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+        padding: 0;
       }
 
-      .questionnaire-option:hover {
-        border-color: rgba(96, 165, 250, 0.7);
-        transform: translateY(-1px);
+      .login-card-form {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
       }
 
-      .questionnaire-option.selected {
-        border-color: rgba(96, 165, 250, 0.9);
-        background: rgba(59, 130, 246, 0.12);
+      .login-field {
+        display: grid;
+        gap: 0.45rem;
       }
 
-      .questionnaire-option .marker {
-        width: 0.72rem;
-        height: 0.72rem;
-        margin-top: 0.2rem;
-        border-radius: 50%;
-        border: 2px solid rgba(191, 219, 254, 0.8);
-        flex-shrink: 0;
+      .login-label-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
       }
 
-      .questionnaire-option.selected .marker {
-        background: linear-gradient(135deg, #8b5cf6 0%, #38bdf8 100%);
-        border-color: transparent;
+      .login-label {
+        font-size: 0.92rem;
+        color: #e2e8f0;
+        font-weight: 600;
       }
 
-      .questionnaire-option strong {
-        display: block;
-        margin-bottom: 0.15rem;
-        color: #f8fafc;
-      }
-
-      .questionnaire-option span {
-        display: block;
-        font-size: 0.85rem;
-        color: #cbd5e1;
-      }
-
-      .questionnaire-input {
-        margin-top: 1rem;
-      }
-
-      .questionnaire-input input {
+      .login-input {
         width: 100%;
         border: 1px solid rgba(148, 163, 184, 0.2);
-        border-radius: 0.8rem;
         background: rgba(15, 23, 42, 0.35);
         color: #f8fafc;
         font: inherit;
-        padding: 0.8rem 0.9rem;
+        border-radius: 0.75rem;
+        padding: 0.74rem 0.85rem;
       }
 
-      .questionnaire-actions {
+      .login-input::placeholder {
+        color: #94a3b8;
+      }
+
+      .muted-link {
+        font-size: 0.8rem;
+        color: #cbd5e1;
+        text-decoration: underline;
+        text-underline-offset: 0.2rem;
+      }
+
+      .login-actions {
         display: flex;
-        justify-content: space-between;
+        flex-direction: column;
+        gap: 0.7rem;
+        margin-top: 1rem;
+      }
+
+      .login-button {
+        display: inline-flex;
         align-items: center;
-        gap: 0.75rem;
-        margin-top: 1.25rem;
-      }
-
-      .questionnaire-actions .left,
-      .questionnaire-actions .right {
-        display: flex;
-        gap: 0.75rem;
-      }
-
-      .questionnaire-button {
-        appearance: none;
-        border: 1px solid rgba(148, 163, 184, 0.2);
-        background: rgba(15, 23, 42, 0.3);
-        color: #e2e8f0;
-        padding: 0.7rem 1rem;
-        border-radius: 999px;
+        justify-content: center;
+        width: 100%;
+        border-radius: 0.7rem;
+        border: 1px solid transparent;
+        padding: 0.72rem 1rem;
         font: inherit;
+        font-weight: 600;
         cursor: pointer;
       }
 
-      .questionnaire-button.primary {
+      .login-button--primary {
         background: linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%);
-        border-color: transparent;
         color: white;
       }
 
-      .questionnaire-button.ghost {
-        background: transparent;
-      }
-
-      .questionnaire-button:disabled {
-        opacity: 0.45;
-        cursor: not-allowed;
-      }
-
-      .questionnaire-status {
-        min-height: 1.25rem;
-        margin-top: 1rem;
-        color: #fda4af;
-        font-size: 0.88rem;
-      }
-
-      .questionnaire-summary {
-        display: none;
-        margin-top: 1rem;
-        border: 1px solid rgba(148, 163, 184, 0.18);
-        border-radius: 1rem;
-        padding: 1rem;
-        background: rgba(15, 23, 42, 0.35);
+      .login-button--secondary {
+        background: rgba(15, 23, 42, 0.2);
+        border-color: rgba(148, 163, 184, 0.24);
         color: #e2e8f0;
-      }
-
-      .questionnaire-summary.visible {
-        display: block;
-      }
-
-      .questionnaire-summary strong {
-        color: #f8fafc;
       }
     </style>
   </head>
@@ -291,34 +203,44 @@
           <p><span id="resultsCount">0</span> books discovered</p>
         </section>
 
-        <section id="questionnaireDemo" class="questionnaire-demo panel-box">
+        <section class="card-demo panel-box">
           <div class="panel-header">
-            <h3>Agent plan</h3>
+            <h3>Card demo</h3>
           </div>
 
-          <div class="questionnaire-shell">
-            <div class="questionnaire-header">
-              <h3>Build next-agent direction</h3>
-              <p id="questionnaireCounter">1 of 3</p>
+          <div class="login-card">
+            <div class="login-card-header">
+              <div>
+                <h3 class="login-card-title">Login to your account</h3>
+                <p class="login-card-description">Enter your email below to login to your account</p>
+              </div>
+              <button type="button" class="login-card-action">Sign Up</button>
             </div>
 
-            <div class="questionnaire-progress" id="questionnaireProgress" aria-label="Questionnaire progress"></div>
-
-            <form id="questionnaireForm" novalidate>
-              <div id="questionnaireCard" class="questionnaire-card"></div>
-
-              <div class="questionnaire-actions">
-                <div class="left">
-                  <button type="button" class="questionnaire-button ghost" id="questionnairePrevious">Previous</button>
-                  <button type="button" class="questionnaire-button ghost" id="questionnaireSkip">Skip</button>
-                </div>
-                <div class="right">
-                  <button type="button" class="questionnaire-button primary" id="questionnaireNext">Next</button>
-                </div>
+            <form class="login-card-form">
+              <div class="login-field">
+                <label class="login-label" for="email">Email</label>
+                <input
+                  id="email"
+                  class="login-input"
+                  type="email"
+                  placeholder="m@example.com"
+                  required
+                />
               </div>
 
-              <div id="questionnaireStatus" class="questionnaire-status" aria-live="polite"></div>
-              <div id="questionnaireSummary" class="questionnaire-summary" aria-live="polite"></div>
+              <div class="login-field">
+                <div class="login-label-row">
+                  <label class="login-label" for="password">Password</label>
+                  <a href="#" class="muted-link">Forgot your password?</a>
+                </div>
+                <input id="password" class="login-input" type="password" required />
+              </div>
+
+              <div class="login-actions">
+                <button type="submit" class="login-button login-button--primary">Login</button>
+                <button type="button" class="login-button login-button--secondary">Login with Google</button>
+              </div>
             </form>
           </div>
         </section>
@@ -429,307 +351,6 @@
         <section id="book-grid" class="book-grid" aria-live="polite"></section>
       </main>
     </div>
-
-    <script>
-      const questionnaireQuestions = [
-        {
-          name: "direction",
-          title: "What should the agent build next?",
-          description: "Choose a direction or describe another task.",
-          type: "single",
-          required: true,
-          options: [
-            {
-              label: "Tool call timeline",
-              description: "Show what the agent ran and what came back.",
-              value: "tool-calls"
-            },
-            {
-              label: "Approval checkpoints",
-              description: "Ask before sensitive or destructive actions.",
-              value: "approvals"
-            },
-            {
-              label: "Sub-agent handoffs",
-              description: "Make delegated work and results easier to follow.",
-              value: "handoffs"
-            }
-          ],
-          input: {
-            label: "Another agent feature",
-            placeholder: "Describe another feature…"
-          }
-        },
-        {
-          name: "signals",
-          title: "What should every progress update include?",
-          description: "Select all that apply, or skip this question.",
-          type: "multi",
-          required: false,
-          options: [
-            { label: "Progress", value: "progress" },
-            { label: "Decisions", value: "decisions" },
-            { label: "Risks", value: "risks" },
-            { label: "Next step", value: "next-step" }
-          ]
-        },
-        {
-          name: "timing",
-          title: "When should work begin?",
-          description: "Choose when the agent should begin the work.",
-          type: "single",
-          required: true,
-          options: [
-            { label: "Start now", value: "now" },
-            { label: "Next development cycle", value: "next-cycle" },
-            { label: "Add it to the backlog", value: "backlog" }
-          ]
-        }
-      ];
-
-      const questionnaireResponses = {
-        signals: []
-      };
-
-      let questionnaireIndex = 0;
-      let questionnaireCustomInput = "";
-
-      const questionnaireCard = document.getElementById("questionnaireCard");
-      const questionnaireCounter = document.getElementById("questionnaireCounter");
-      const questionnaireProgress = document.getElementById("questionnaireProgress");
-      const questionnaireStatus = document.getElementById("questionnaireStatus");
-      const questionnaireSummary = document.getElementById("questionnaireSummary");
-      const questionnairePrevious = document.getElementById("questionnairePrevious");
-      const questionnaireSkip = document.getElementById("questionnaireSkip");
-      const questionnaireNext = document.getElementById("questionnaireNext");
-
-      function getCurrentQuestion() {
-        return questionnaireQuestions[questionnaireIndex];
-      }
-
-      function getSelectedValues(question) {
-        const value = questionnaireResponses[question.name];
-        if (question.type === "multi") {
-          return Array.isArray(value) ? value : [];
-        }
-        return value ?? "";
-      }
-
-      function setStatus(message) {
-        questionnaireStatus.textContent = message;
-      }
-
-      function renderProgress() {
-        questionnaireProgress.innerHTML = questionnaireQuestions
-          .map(
-            (_, index) =>
-              `<div class="questionnaire-step ${index === questionnaireIndex ? "active" : ""}"></div>`
-          )
-          .join("");
-      }
-
-      function renderQuestionnaire() {
-        const question = getCurrentQuestion();
-        const selectedValues = getSelectedValues(question);
-        const isLastQuestion = questionnaireIndex === questionnaireQuestions.length - 1;
-
-        questionnaireCounter.textContent = `${questionnaireIndex + 1} of ${questionnaireQuestions.length}`;
-        renderProgress();
-
-        const optionMarkup = question.options
-          .map((option) => {
-            const isSelected =
-              question.type === "multi"
-                ? selectedValues.includes(option.value)
-                : selectedValues === option.value;
-
-            return `
-              <button
-                type="button"
-                class="questionnaire-option ${isSelected ? "selected" : ""}"
-                data-question=${question.name}
-                data-option=${option.value}
-              >
-                <span class="marker" aria-hidden="true"></span>
-                <span>
-                  <strong>${option.label}</strong>
-                  ${option.description ? `<span>${option.description}</span>` : ""}
-                </span>
-              </button>
-            `;
-          })
-          .join("");
-
-        const customValue = question.input ? (questionnaireResponses[`${question.name}-custom`] ?? "") : "";
-        const customInputMarkup = question.input
-          ? `
-            <div class="questionnaire-input">
-              <label>
-                <span class="sr-only">${question.input.label}</span>
-                <input
-                  type="text"
-                  value="${customValue}"
-                  data-custom="${question.name}"
-                  placeholder="${question.input.placeholder}"
-                  aria-label="${question.input.label}"
-                />
-              </label>
-            </div>
-          `
-          : "";
-
-        questionnaireCard.innerHTML = `
-          <div class="kind-label">Question ${questionnaireIndex + 1}</div>
-          <h4>${question.title}</h4>
-          <p>${question.description}</p>
-          <div class="questionnaire-options">${optionMarkup}</div>
-          ${customInputMarkup}
-        `;
-
-        questionnairePrevious.disabled = questionnaireIndex === 0;
-        questionnaireSkip.textContent = question.required ? "Skip" : "Skip";
-        questionnaireSkip.style.visibility = questionnaireIndex === 0 || question.required ? "visible" : "visible";
-        questionnaireNext.textContent = isLastQuestion ? "Save plan" : "Next";
-
-        questionnaireSummary.classList.remove("visible");
-        setStatus("");
-      }
-
-      function validateCurrentQuestion() {
-        const question = getCurrentQuestion();
-        const selected = getSelectedValues(question);
-
-        if (!question.required) {
-          return true;
-        }
-
-        if (question.type === "multi") {
-          return selected.length > 0;
-        }
-
-        if (!selected) {
-          if (question.input) {
-            const customValue = questionnaireResponses[`${question.name}-custom`] || "";
-            return customValue.trim().length > 0;
-          }
-          return false;
-        }
-
-        return true;
-      }
-
-      function moveNext() {
-        const question = getCurrentQuestion();
-        if (question.required && !validateCurrentQuestion()) {
-          setStatus("Please choose an option before continuing.");
-          return;
-        }
-
-        if (questionnaireIndex < questionnaireQuestions.length - 1) {
-          questionnaireIndex += 1;
-          renderQuestionnaire();
-          return;
-        }
-
-        const summary = questionnaireQuestions
-          .map((item) => {
-            const value = questionnaireResponses[item.name];
-            const customKey = `${item.name}-custom`;
-            const customValue = questionnaireResponses[customKey];
-
-            const formattedValue =
-              item.type === "multi"
-                ? (Array.isArray(value) && value.length ? value.join(", ") : "None")
-                : value || (customValue ? customValue : "None");
-
-            return `<div><strong>${item.title}:</strong> ${formattedValue}</div>`;
-          })
-          .join("");
-
-        questionnaireSummary.innerHTML = summary;
-        questionnaireSummary.classList.add("visible");
-        questionnaireCard.innerHTML = "<p>Plan saved. Your agent briefing is ready.</p>";
-        questionnaireNext.textContent = "Saved";
-        questionnaireNext.disabled = true;
-        questionnairePrevious.disabled = true;
-        questionnaireSkip.style.visibility = "hidden";
-        setStatus("Agent plan saved.");
-      }
-
-      function handleSelection(event) {
-        const button = event.target.closest(".questionnaire-option");
-        if (!button) return;
-
-        const question = questionnaireQuestions.find((item) => item.name === button.dataset.question);
-        if (!question) return;
-
-        if (question.type === "multi") {
-          const selected = Array.isArray(questionnaireResponses[question.name]) ? questionnaireResponses[question.name] : [];
-          const value = button.dataset.option;
-          const nextValues = selected.includes(value)
-            ? selected.filter((item) => item !== value)
-            : [...selected, value];
-
-          questionnaireResponses[question.name] = nextValues;
-        } else {
-          questionnaireResponses[question.name] = button.dataset.option;
-        }
-
-        renderQuestionnaire();
-      }
-
-      function handleCustomInput(event) {
-        const input = event.target.closest("input[data-custom]");
-        if (!input) return;
-
-        const key = `${input.dataset.custom}-custom`;
-        questionnaireResponses[key] = input.value;
-        if (input.dataset.custom === "direction") {
-          questionnaireResponses.direction = questionnaireResponses.direction || "custom";
-        }
-      }
-
-      function skipQuestion() {
-        const question = getCurrentQuestion();
-        if (question.type === "multi") {
-          questionnaireResponses[question.name] = [];
-        } else {
-          questionnaireResponses[question.name] = "";
-        }
-
-        if (questionnaireIndex < questionnaireQuestions.length - 1) {
-          questionnaireIndex += 1;
-          renderQuestionnaire();
-          return;
-        }
-
-        questionnaireSummary.innerHTML = `
-          <div><strong>Direction:</strong> None</div>
-          <div><strong>Signals:</strong> None</div>
-          <div><strong>Timing:</strong> None</div>
-        `;
-        questionnaireSummary.classList.add("visible");
-        questionnaireCard.innerHTML = "<p>Plan saved. Your agent briefing is ready.</p>";
-        questionnaireNext.textContent = "Saved";
-        questionnaireNext.disabled = true;
-        questionnairePrevious.disabled = true;
-        questionnaireSkip.style.visibility = "hidden";
-        setStatus("Agent plan saved.");
-      }
-
-      questionnaireCard.addEventListener("click", handleSelection);
-      questionnaireCard.addEventListener("input", handleCustomInput);
-      questionnairePrevious.addEventListener("click", () => {
-        if (questionnaireIndex > 0) {
-          questionnaireIndex -= 1;
-          renderQuestionnaire();
-        }
-      });
-      questionnaireSkip.addEventListener("click", skipQuestion);
-      questionnaireNext.addEventListener("click", moveNext);
-
-      renderQuestionnaire();
-    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="app.js"></script>
