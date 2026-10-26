@@ -1,9 +1,6 @@
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { ThemeShowcase } from "@/components/ui/theme-showcase"
 import { Search } from "lucide-react"
+
+import { ThemeShowcase } from "@/components/ui/theme-showcase"
 
 const books = [
   {
@@ -44,49 +41,6 @@ const books = [
   },
 ]
 
-function AuthCard() {
-  return (
-    <Card className="w-full max-w-sm border-border/60 bg-card shadow-soft">
-      <CardHeader className="space-y-1">
-        <div className="flex items-start justify-between gap-3">
-          <div className="space-y-1">
-            <CardTitle className="text-xl font-semibold tracking-tight">Login to your account</CardTitle>
-            <CardDescription className="text-sm text-muted-foreground">
-              Enter your email below to login to your account
-            </CardDescription>
-          </div>
-          <Button type="button" variant="link" className="h-auto p-0 text-sm font-medium">
-            Sign Up
-          </Button>
-        </div>
-      </CardHeader>
-      <CardContent className="space-y-6">
-        <div className="grid gap-2">
-          <Label htmlFor="email">Email</Label>
-          <Input id="email" type="email" placeholder="m@example.com" required />
-        </div>
-        <div className="grid gap-2">
-          <div className="flex items-center justify-between gap-2">
-            <Label htmlFor="password">Password</Label>
-            <a href="#" className="text-sm text-muted-foreground underline-offset-4 hover:underline">
-              Forgot your password?
-            </a>
-          </div>
-          <Input id="password" type="password" required />
-        </div>
-      </CardContent>
-      <CardFooter className="flex-col gap-2">
-        <Button type="submit" className="w-full">
-          Login
-        </Button>
-        <Button variant="outline" className="w-full">
-          Login with Google
-        </Button>
-      </CardFooter>
-    </Card>
-  )
-}
-
 export default function HomePage() {
   return (
     <main className="min-h-screen bg-background text-foreground">
@@ -111,10 +65,6 @@ export default function HomePage() {
                 className="w-full bg-transparent text-sm text-foreground outline-none placeholder:text-muted-foreground sm:w-80"
               />
             </label>
-            <div className="flex gap-2">
-              <Button variant="default">Login</Button>
-              <Button variant="outline">Sign up</Button>
-            </div>
           </div>
         </header>
 
@@ -164,7 +114,7 @@ export default function HomePage() {
 
         <ThemeShowcase />
 
-        <section className="mt-8 grid gap-6 lg:grid-cols-[minmax(0,1.2fr)_360px]">
+        <section className="mt-8 grid gap-6 lg:grid-cols-[minmax(0,1fr)]">
           <div>
             <div className="mb-4 flex items-center justify-between">
               <p className="text-sm uppercase tracking-[0.15em] text-muted-foreground">Discover</p>
@@ -199,10 +149,6 @@ export default function HomePage() {
                 </article>
               ))}
             </div>
-          </div>
-
-          <div className="lg:pt-10">
-            <AuthCard />
           </div>
         </section>
       </div>
