@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { ThemeShowcase } from "@/components/ui/theme-showcase"
 import { Search } from "lucide-react"
 
 const books = [
@@ -160,6 +161,8 @@ export default function HomePage() {
             ))}
           </div>
         </section>
+
+        <ThemeShowcase />
 
         <section className="mt-8 grid gap-6 lg:grid-cols-[minmax(0,1.2fr)_360px]">
           <div>
