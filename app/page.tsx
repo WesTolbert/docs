@@ -1,7 +1,3 @@
-import { Search } from "lucide-react"
-
-import { ThemeShowcase } from "@/components/ui/theme-showcase"
-
 const books = [
   {
     title: "The Last Signal",
@@ -41,6 +37,8 @@ const books = [
   },
 ]
 
+import { ThemeShowcase } from "@/components/ui/theme-showcase"
+
 export default function HomePage() {
   return (
     <main className="min-h-screen bg-background text-foreground">
@@ -54,17 +52,6 @@ export default function HomePage() {
               <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Reading portal</p>
               <h1 className="text-2xl font-semibold tracking-tight">A MIND OF VALOR</h1>
             </div>
-          </div>
-
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-            <label className="flex items-center gap-2 rounded-full border border-border/60 bg-background/80 px-3 py-2 text-sm text-muted-foreground shadow-sm">
-              <Search className="h-4 w-4" />
-              <input
-                aria-label="Search books"
-                placeholder="Search by title, author, genre, or theme"
-                className="w-full bg-transparent text-sm text-foreground outline-none placeholder:text-muted-foreground sm:w-80"
-              />
-            </label>
           </div>
         </header>
 
